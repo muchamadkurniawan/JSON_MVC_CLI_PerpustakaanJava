@@ -4,9 +4,10 @@ import Node.NodeBuku;
 import NodeJSON.NodeJSONBuku;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class ModelJSONBuku {
@@ -72,5 +73,25 @@ public class ModelJSONBuku {
             }
             return listBuku;
         }
+    }
+
+    public ArrayList<NodeBuku> readFromFile(){
+        if (cekFile() == false){
+            return null;
+        }
+        ArrayList listBuku = null;
+        JSONParser parser = new JSONParser();
+        try {
+            Reader reader = new FileReader(fname);
+            JSONArray arrayBuku = (JSONArray) parser.parse(reader);
+            listBuku = convertJSONArrayToArrayList(arrayBuku);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        return listBuku;
     }
 }

@@ -15,6 +15,7 @@ public class Main {
         listBuku.add(new NodeBuku(3,"Buku 3","Pengarang 3",2012,12));
         JSONArray arrayBuku = modelJSONBuku.convertArrayListToArrayJSON(listBuku);
         ArrayList<NodeBuku> listBuku2 = modelJSONBuku.convertJSONArrayToArrayList(arrayBuku);
+        System.out.println("------------------------------------");
         for (NodeBuku buku:listBuku2) {
             System.out.println(buku.kode_buku);
             System.out.println(buku.judul_buku);

@@ -1,43 +1,64 @@
 package Model;
-import DatabaseJSON.JSONbuku;
+
+import ModelJSON.ModelJSONBuku;
 import Node.NodeBuku;
-import org.json.simple.JSONObject;
 import java.util.ArrayList;
 
 public class ModelBuku {
     private ArrayList<NodeBuku> books;
+    private ModelJSONBuku modelJSONBuku;
     public ModelBuku(){
         books = new ArrayList<>();
+        modelJSONBuku = new ModelJSONBuku();
+        loadBooks();
     }
-
-    public void insertBuku(String judul, String pengarang, int tahun){
-        int kode = books.get(books.size()-1).kode_buku;
-        books.add(new NodeBuku(kode+1,judul,pengarang,tahun));
-    }
-
-    public ArrayList<NodeBuku> readAllbuku(){
+   private void loadBooks(){
+        books = modelJSONBuku.readFromFile();
+   }
+   public ArrayList<NodeBuku> GetBooks(){
         return books;
-    }
+   }
 
-    public NodeBuku searchBook(String judul){
-        NodeBuku buku = null;
-        for (int i=0;i<books.size();i++){
-            if (judul.equals(books.get(i).judul_buku)){
-                buku = books.get(i);
+   private int getLastKode(){
+        int last = books.size() - 1;
+        return books.get(last).kode_buku;
+   }
+   public void addBook(String judul, String pengarang, int tahun_terbit, int stok){
+        int kode_buku = getLastKode() + 1;
+        NodeBuku buku = new NodeBuku(kode_buku, judul, pengarang, tahun_terbit, stok);
+        books.add(buku);
+   }
+   public void commit(){
+        modelJSONBuku.writeFileJSON(books);
+   }
+   public NodeBuku getBook(int kode_buku){
+        NodeBuku book = null;
+        for (NodeBuku buku:books) {
+            if (buku.kode_buku == kode_buku){
+                return buku;
             }
         }
-        return buku;
-    }
-    public void updateStok(String judul,int newStok){
-        NodeBuku buku = searchBook(judul);
-        if (buku!=null){
-            buku.updateStok(newStok);
+        return book;
+   }
+
+   public boolean updateBook(int kode_buku, String judul, String pengarang, int tahun_terbit, int stok){
+        NodeBuku book = getBook(kode_buku);
+        if (book != null){
+            book.judul_buku = judul;
+            book.pengarang = pengarang;
+            book.tahun_terbit = tahun_terbit;
+            book.stok = stok;
+            return true;
         }
-    }
-    public void deleteBook(String judul){
-        NodeBuku buku = searchBook(judul);
-        if (buku!=null){
-            books.remove(buku);
+        return false;
+   }
+
+   public boolean deleteBook(int kode_buku){
+        NodeBuku book = getBook(kode_buku);
+        if (book != null){
+            books.remove(book);
+            return true;
         }
-    }
+        return false;
+   }
 }

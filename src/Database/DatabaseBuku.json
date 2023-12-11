@@ -1,5 +1,2 @@
-[{"kode_buku":1,"stok":0,"tahun_terbit":2020,"judul_buku":"judul1","pengarang":"pengarang1"},
-  {"kode_buku":2,"stok":0,"tahun_terbit":2021,"judul_buku":"judul2","pengarang":"pengarang2"},
-  {"kode_buku":3,"stok":0,"tahun_terbit":2022,"judul_buku":"judul3","pengarang":"pengarang3"},
-  {"kode_buku":4,"stok":0,"tahun_terbit":2020,"judul_buku":"Buku 4","pengarang":"Pengarang 4"},
-  {"kode_buku":5,"stok":0,"tahun_terbit":2020,"judul_buku":"Buku 5","pengarang":"Pengarang 5"}]
+[{"kode_buku":1,"stok":0,"tahun_terbit":2020,"judul_buku":"judul1","pengarang":"pengarang1"},{"kode_buku":2,"stok":0,"tahun_terbit":2021,"judul_buku":"judul2","pengarang":"pengarang2"},{"kode_buku":3,"stok":0,"tahun_terbit":2022,"judul_buku":"judul3","pengarang":"pengarang3"},
+  {"kode_buku":4,"stok":0,"tahun_terbit":2020,"judul_buku":"Buku 4","pengarang":"Pengarang 4"}]

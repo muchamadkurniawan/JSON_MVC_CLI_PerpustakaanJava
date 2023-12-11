@@ -41,24 +41,16 @@ public class ModelBuku {
         return book;
    }
 
-   public boolean updateBook(int kode_buku, String judul, String pengarang, int tahun_terbit, int stok){
-        NodeBuku book = getBook(kode_buku);
-        if (book != null){
-            book.judul_buku = judul;
-            book.pengarang = pengarang;
-            book.tahun_terbit = tahun_terbit;
-            book.stok = stok;
-            return true;
-        }
-        return false;
+   public void updateBook(NodeBuku book){
+        int index = books.indexOf(book);
+//        books.set(index, book);
+        books.get(index).judul_buku = book.judul_buku;
+        books.get(index).pengarang = book.pengarang;
+        books.get(index).tahun_terbit = book.tahun_terbit;
+        books.get(index).stok = book.stok;
    }
 
-   public boolean deleteBook(int kode_buku){
-        NodeBuku book = getBook(kode_buku);
-        if (book != null){
-            books.remove(book);
-            return true;
-        }
-        return false;
+   public void deleteBook(NodeBuku book){
+        books.remove(book);
    }
 }

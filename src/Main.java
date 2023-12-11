@@ -1,43 +1,50 @@
+import Controller.ControllerBuku;
 import Model.ModelBuku;
 import ModelJSON.ModelJSONBuku;
 import Node.NodeBuku;
+import View.ViewBook;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
+
+    public static void menuPilihanUtama(){
+        System.out.println("Menu Pilihan");
+        System.out.println("1. Manage Buku");
+        System.out.println("2. Manage Anggota");
+        System.out.println("3. Manage Peminjaman");
+        System.out.println("4. Manage Pengembalian");
+        System.out.print("Masukkan pilihan anda : ");
+    }
+
+    public static void mainProgram(){
+
+    }
+
+    private static void menuManageBuku() {
+        System.out.println("Menu Manage Buku");
+        System.out.println("1. Tambah Buku");
+        System.out.println("2. Lihat Buku");
+        System.out.println("3. Update Buku");
+        System.out.println("4. Hapus Buku");
+        System.out.println("5. Cari Buku");
+        System.out.println("6. Kembali");
+        System.out.print("Masukkan pilihan anda : ");
+    }
     public static void main(String[] args) {
-        // test load data
+        // object model, controller, view
         ModelBuku modelBuku = new ModelBuku();
+        ControllerBuku controllerBuku = new ControllerBuku(modelBuku);
+        ViewBook viewBook = new ViewBook(controllerBuku);
 
-        // test deleteBook
-        Boolean delete = modelBuku.deleteBook(5);
-        if (delete){
-            System.out.println("Delete berhasil");
-        }else{
-            System.out.println("Delete gagal");
-        }
-        //print all buku
-        modelBuku.GetBooks().forEach((buku) -> {
-            System.out.println(buku.kode_buku);
-            System.out.println(buku.judul_buku);
-            System.out.println(buku.pengarang);
-            System.out.println(buku.tahun_terbit);
-            System.out.println(buku.stok);
-        });
-
-        // test updateBook
-        Boolean update = modelBuku.updateBook(9, "Buku 1", "Pengarang 1", 2020, 10);
-        if (update){
-            System.out.println("Update berhasil");
-            NodeBuku buku = modelBuku.getBook(1);
-            System.out.println(buku.judul_buku);
-            System.out.println(buku.pengarang);
-            System.out.println(buku.tahun_terbit);
-            System.out.println(buku.stok);
-        }else{
-            System.out.println("Update gagal");
-        }
+        //testing insert
+        viewBook.insertBook();
+        viewBook.viewBooks();
+        viewBook.updateBook();
+        viewBook.deleteBook();
+        viewBook.searchBook();
     }
 }

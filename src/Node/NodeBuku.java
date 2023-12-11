@@ -20,7 +20,7 @@ public class NodeBuku {
         this.judul_buku = judul_buku;
         this.pengarang = pengarang;
         this.tahun_terbit = tahun_terbit;
-        this.stok = 0;
+        this.stok = stok;
     }
 
     public void updateStok(int newStok) {
